@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 MAINTAINER Nick w19900227@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
