@@ -1,19 +1,13 @@
-## 自動部署
-    $ ./build.sh
+FROM ubuntu:14.04
+MAINTAINER Nick w19900227@gmail.com
 
-## 手動建置
+RUN mkdir -p /home/golang
+COPY go*.tar.gz /home/golang/
+COPY main.go /home/golang/
+RUN tar zxvf /home/golang/go*.tar.gz -C /usr/local
 
-#### 建置
-    $ git clone https://github.com/w19900227/dockerfile.git
-    $ cd dockerfile/cloud/x-golang
-    $ wget https://storage.googleapis.com/golang/go1.5.linux-amd64.tar.gz
+ENV PATH $PATH:/usr/local/go/bin
+ENV GOPATH /home/golang
 
-#### docker build
-    $ sudo docker build -t golang . 
-
-#### docker run
-    $ sudo docker run -d golang
-
-### 參考網址
-    
-
+WORKDIR /home/golang
+RUN go run main.go
